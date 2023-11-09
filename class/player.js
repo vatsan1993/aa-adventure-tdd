@@ -3,9 +3,28 @@ const { Enemy } = require('./enemy');
 const { Food } = require('./food');
 const { DarkRoom } = require('./darkroom.js');
 const { Light } = require('./light.js');
+const { Shop } = require('./shop.js');
 class Player extends Character {
   constructor(name, startingRoom) {
     super(name, 'main character', startingRoom);
+    this.wallet = 1500;
+  }
+  buy(item) {
+    if (this.wallet > 0 && this.currentRoom instanceof Shop) {
+      this.currentRoom.sell(item);
+      this.items.push(item);
+      this.wallet -= item.price;
+    }
+  }
+  sell(item) {
+    if (this.currentRoom.buy(item)) {
+      for (let i = 0; i < this.items.length; i++) {
+        if ((item.name = this.items[i].name)) {
+          this.items.splice(i, 1);
+          this.wallet += item.price;
+        }
+      }
+    }
   }
 
   turnOnLight() {

@@ -1,8 +1,8 @@
 const { Item } = require('./item');
 
 class Food extends Item {
-  constructor(name, description) {
-    super(name, description);
+  constructor(name, description, price) {
+    super(name, description, 10);
     this.isFood = true;
   }
 }

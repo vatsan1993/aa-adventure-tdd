@@ -1,0 +1,5 @@
+- player should have wallet
+- player should have methods to buy and sell
+
+- Item, Food, Light should have price
+- shop should have methods to buy and sell
