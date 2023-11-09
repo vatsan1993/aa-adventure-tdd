@@ -1,10 +1,20 @@
 const { Character } = require('./character');
 const { Enemy } = require('./enemy');
 const { Food } = require('./food');
-
+const { DarkRoom } = require('./darkroom.js');
+const { Light } = require('./light.js');
 class Player extends Character {
   constructor(name, startingRoom) {
     super(name, 'main character', startingRoom);
+  }
+
+  turnOnLight() {
+    for (let item of this.items) {
+      if (item instanceof Light && this.currentRoom instanceof DarkRoom) {
+        this.currentRoom.visible = true;
+        break;
+      }
+    }
   }
 
   move(direction) {
